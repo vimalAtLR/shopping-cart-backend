@@ -6,6 +6,9 @@ const port = 8000;
 const products = require("./products");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
+const orders = require("./routes/orders");
+const stripe = require("./routes/stripe");
+const productsRoute = require("./routes/products");
 
 const app = express();
 
