@@ -18,10 +18,10 @@ router.post("/", isAdmin, async (req, res) => {
     });
 
     const savedProduct = await product.save();
-    res.status(200).send(savedProduct);
+    res.status(200).json(savedProduct);
   } catch (error) {
     console.log(error);
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 });
 
@@ -30,9 +30,9 @@ router.post("/", isAdmin, async (req, res) => {
 router.delete("/:id", isAdmin, async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
-    res.status(200).send("Product has been deleted...");
+    res.status(200).json("Product has been deleted...");
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 });
 
@@ -51,9 +51,9 @@ router.get("/", async (req, res) => {
       products = await Product.find();
     }
 
-    res.status(200).send(products);
+    res.status(200).json(products);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 });
 
@@ -62,9 +62,9 @@ router.get("/", async (req, res) => {
 router.get("/find/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    res.status(200).send(product);
+    res.status(200).json(product);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 });
 
@@ -79,9 +79,9 @@ router.put("/:id", isAdmin, async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).send(updatedProduct);
+    res.status(200).json(updatedProduct);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json(error);
   }
 });
 

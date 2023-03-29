@@ -13,9 +13,9 @@ router.post("/", auth, async (req, res) => {
 
   try {
     const savedOrder = await newOrder.save();
-    res.status(200).send(savedOrder);
+    res.status(200).json(savedOrder);
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 });
 
@@ -29,9 +29,9 @@ router.put("/:id", isAdmin, async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).send(updatedOrder);
+    res.status(200).json(updatedOrder);
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 });
 
@@ -39,9 +39,9 @@ router.put("/:id", isAdmin, async (req, res) => {
 router.delete("/:id", isAdmin, async (req, res) => {
   try {
     await Order.findByIdAndDelete(req.params.id);
-    res.status(200).send("Order has been deleted...");
+    res.status(200).json("Order has been deleted...");
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 });
 
@@ -49,9 +49,9 @@ router.delete("/:id", isAdmin, async (req, res) => {
 router.get("/find/:userId", isUser, async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.userId });
-    res.status(200).send(orders);
+    res.status(200).json(orders);
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 });
 
@@ -60,9 +60,9 @@ router.get("/find/:userId", isUser, async (req, res) => {
 router.get("/", isAdmin, async (req, res) => {
   try {
     const orders = await Order.find();
-    res.status(200).send(orders);
+    res.status(200).json(orders);
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 });
 
@@ -89,9 +89,9 @@ router.get("/income", isAdmin, async (req, res) => {
         },
       },
     ]);
-    res.status(200).send(income);
+    res.status(200).json(income);
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 });
 

@@ -19,11 +19,11 @@ app.use("/api/register", registerRoutes);
 app.use("/api/login", loginRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Welcome our to online shop API...");
+  res.status(200).json("Welcome our to online shop API...");
 });
 
 app.get("/products", (req, res) => {
-  res.send(products);
+  return res.status(200).json(products);
 });
 
 app.listen(port, () => {

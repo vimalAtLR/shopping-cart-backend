@@ -16,7 +16,7 @@ router.post("/create-checkout-session", async (req, res) => {
     },
   });
 
-  const line_items = req.body.cartItems.map((item) => {
+  const line_items = req.body.cartItems?.map((item) => {
     return {
       price_data: {
         currency: "usd",
@@ -102,7 +102,7 @@ router.post("/create-checkout-session", async (req, res) => {
 const createOrder = async (customer, data) => {
   const Items = JSON.parse(customer.metadata.cart);
 
-  const products = Items.map((item) => {
+  const products = Items?.map((item) => {
     return {
       productId: item.id,
       quantity: item.cartQuantity,
